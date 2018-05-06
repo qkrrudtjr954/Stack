@@ -2,7 +2,7 @@ import unittest
 from Stack import Stack
 
 class StackTest(unittest.TestCase) :
-    
+
     def test_push(self) :
         stack = Stack()
         self.assertEqual(stack.show(), [])

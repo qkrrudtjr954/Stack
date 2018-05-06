@@ -13,11 +13,11 @@ class LinkedList :
     def addFirst(self, data) :
         newNode = self.Node(data)
 
-        # ºó¸®½ºÆ®ÀÏ °ÏÀ¯
+        # ë¹ˆë¦¬ìŠ¤íŠ¸ì¼ ê²…ìœ 
         if self.head == None :
             self.head = newNode
             self.tail = newNode
-        # ºó¸®½ºÆ®°¡ ¾Æ´Ò °æ¿ì
+        # ë¹ˆë¦¬ìŠ¤íŠ¸ê°€ ì•„ë‹ ê²½ìš°
         else :
             newNode.next = self.head
             self.head = newNode
@@ -27,10 +27,10 @@ class LinkedList :
     def addLast(self, data) :
         newNode = self.Node(data)
 
-        # ºó¸®½ºÆ®ÀÏ °æ¿ì
+        # ë¹ˆë¦¬ìŠ¤íŠ¸ì¼ ê²½ìš°
         if self.head == None :
             self.addFirst(data)
-        # ºó¸®½ºÆ®°¡ ¾Æ´Ò °æ¿ì
+        # ë¹ˆë¦¬ìŠ¤íŠ¸ê°€ ì•„ë‹ ê²½ìš°
         else :
             self.tail.next = newNode
             self.tail = newNode
@@ -62,6 +62,8 @@ class LinkedList :
             temp = self.head
             self.head = self.head.next
             self.size -= 1
+            if self.size == 0 :
+                self.tail = None
             return temp.data
 
     def removeNode(self, index) :
@@ -98,7 +100,12 @@ class LinkedList :
 
 
     def get(self, index) :
-        return self.__getNode(index).data
+        target = self.__getNode(index)
+
+        if target == None :
+            return None
+        else :
+            return target.data
 
 
     def show(self) :
