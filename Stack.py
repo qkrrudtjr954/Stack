@@ -1,26 +1,43 @@
-from LinkedList import LinkedList
-
 class Stack :
+    class Item :
+        def __init__(self, data) :
+            self.data = data
+            self.next = None
+
     def __init__(self) :
-        self.store = LinkedList()
         self.size = 0
+        self.top = None
 
     def push(self, data) :
+        newItem = self.Item(data)
+        # if it is not empty stack,
+        # then store this item to top
+        if self.top != None :
+            newItem.next = self.top
+
+        # newItem becomes top
+        self.top = newItem
         self.size += 1
-        self.store.addFirst(data)
 
     def pop(self) :
-        result = self.store.get(0)
-        self.size -= 1
-        self.store.removeFirst()
-        return result
+        # if stack is empty,
+        # then return None
+        result = self.top
+        if result != None :
+            self.top = result.next
+            self.size -= 1
+            return result.data
+        else :
+            return None
 
     def peek(self) :
-        result = self.store.get(0)
-        return result
+        if self.top != None :
+            return self.top.data
+        else :
+            return None
 
     def isEmpty(self) :
-        if self.size == 0:
+        if self.top == None and self.size == 0:
             return True
         else :
             return False
@@ -29,4 +46,11 @@ class Stack :
         return self.size
 
     def show(self) :
-        return self.store.show()
+        result = []
+        curr = self.top
+
+        while curr != None :
+            result.append(curr.data)
+            curr = curr.next
+
+        return result
